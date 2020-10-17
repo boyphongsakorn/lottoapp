@@ -1,0 +1,7 @@
+{
+  "name": "lottoapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
