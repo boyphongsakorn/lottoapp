@@ -1,4 +1,11 @@
 import { Component } from '@angular/core';
+import { 
+  HttpClient, //ส่งข้อมูลจากโมบายไปเซิฟเวอร์
+  HttpHeaders, //บอกฟอเมตเอกสารที่ส่ง
+  HttpResponse, //รับค่ากลับ
+  HttpErrorResponse // ไม่มีการตอบกลับ
+} from '@angular/common/http';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +14,50 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  username:any
+  password:any
+
+  constructor(private http: HttpClient,public alertController: AlertController) {}
+
+  logincheck(){
+
+    var headers = new HttpHeaders();
+    headers.append("Accept", 'application/json');
+    headers.append('Content-Type', 'application/json' );
+    const requestOptions = new HttpResponse({ headers: headers});
+
+    let postData = {
+      "username": this.username,
+      "password": this.password
+    };
+
+    let uri = 'http://127.0.0.1/lotto/checklogin.php';
+
+    this.http.post(uri,postData,requestOptions).subscribe(
+      data => {
+        let json_data:any = data;
+        console.log(json_data.result);
+        if(json_data.result==1){
+          console.log("หี");
+          this.presentAlert()
+        }
+      },error=>{
+        alert("error");
+      }
+    );
+
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      //cssClass: 'my-custom-class',
+      header: 'หี',
+      subHeader: 'หี',
+      message: 'หี',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
 
 }
