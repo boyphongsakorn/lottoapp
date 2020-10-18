@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'checklotto',
+    loadChildren: () => import('./checklotto/checklotto.module').then( m => m.ChecklottoPageModule)
+  },
 ];
 
 @NgModule({

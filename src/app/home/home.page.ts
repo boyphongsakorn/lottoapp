@@ -6,6 +6,7 @@ import {
   HttpErrorResponse // ไม่มีการตอบกลับ
 } from '@angular/common/http';
 import { AlertController } from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomePage {
   username:any
   password:any
 
-  constructor(private http: HttpClient,public alertController: AlertController) {}
+  constructor(private http: HttpClient,public alertController: AlertController,private router:Router) {}
 
   logincheck(){
 
@@ -51,10 +52,17 @@ export class HomePage {
   async presentAlert() {
     const alert = await this.alertController.create({
       //cssClass: 'my-custom-class',
-      header: 'หี',
-      subHeader: 'หี',
-      message: 'หี',
-      buttons: ['OK']
+      header: 'ยินดีต้อนรับ',
+      message: 'คุณ BoyPhongsakorn',
+      buttons: [
+        {
+          text: 'ตกลง',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+            this.router.navigate(['checklotto']);
+          }
+        }
+      ]
     });
 
     await alert.present();
