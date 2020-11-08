@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { 
   HttpClient, //ส่งข้อมูลจากโมบายไปเซิฟเวอร์
   HttpHeaders, //บอกฟอเมตเอกสารที่ส่ง
@@ -7,20 +7,25 @@ import {
 } from '@angular/common/http';
 import { AlertController } from '@ionic/angular';
 import {Router} from '@angular/router';
+import { exit } from 'process';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class HomePage {
+export class RegisterPage implements OnInit {
 
   username:any
   password:any
+  email:any
 
-  constructor(private http: HttpClient,public alertController: AlertController,private router:Router) {}
+  constructor(private http: HttpClient,public alertController: AlertController,private router:Router) { }
 
-  logincheck(){
+  ngOnInit() {
+  }
+
+  register(){
 
     var headers = new HttpHeaders();
     headers.append("Accept", 'application/json');
@@ -32,15 +37,19 @@ export class HomePage {
       "password": this.password
     };
 
-    let uri = 'http://127.0.0.1/lotto/checklogin.php';
+    if(this.username==null || this.password==null){
+      this.Alert("ชื่อผู้ใช้ หรือ รหัสผ่านไม่ควรว่าง")
+      return false;
+    }
+
+    let uri = 'http://127.0.0.1/lotto/register.php';
 
     this.http.post(uri,postData,requestOptions).subscribe(
       data => {
         let json_data:any = data;
         console.log(json_data.result);
         if(json_data.result==1){
-          console.log("หี");
-          this.presentAlert()
+          console.log("สมัครเสร็จแล้ว คูบา");
         }
       },error=>{
         alert("error");
@@ -49,27 +58,19 @@ export class HomePage {
 
   }
 
-  /*register(){
-    this.router.navigate(['checklotto']);
-  }*/
-
-  async presentAlert() {
+  async Alert(text) {
     const alert = await this.alertController.create({
       //cssClass: 'my-custom-class',
-      header: 'ยินดีต้อนรับ',
-      message: 'คุณ BoyPhongsakorn',
+      header: 'ผิดพลาด',
+      message: text,
       buttons: [
         {
-          text: 'ตกลง',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-            this.router.navigate(['checklotto']);
-          }
+          text: 'ตกลง'
         }
       ]
     });
 
-    await alert.present();
+    alert.present();
   }
 
 }

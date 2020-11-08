@@ -23,6 +23,6 @@
       <ion-input [(ngModel)]="password" required type="password"></ion-input>
     </ion-item>
 
-    <ion-button (click)="logincheck()">ลงชื่อเข้าใช้</ion-button><ion-button>สมัครสมาชิก</ion-button>
+    <ion-button (click)="logincheck()">ลงชื่อเข้าใช้</ion-button><ion-button [routerLink]="['/register']">สมัครสมาชิก</ion-button>
   </div>
 </ion-content>
