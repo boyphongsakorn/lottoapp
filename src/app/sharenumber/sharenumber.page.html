@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>แบ่งปันเลขที่ซื้อ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <!--ion-list-header>
+      <ion-label>
+        Interface Options
+      </ion-label>
+    </ion-list-header-->
+  
+    <ion-item>
+      <ion-label>ประเภทเลขที่ต้องการจะแบ่งปัน</ion-label>
+      <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One" [(ngModel)]="numbertype" required>
+        <ion-select-option value="threefirst">เลขหน้าสามตัว</ion-select-option>
+        <ion-select-option value="threeend">เลขท้ายสามตัว</ion-select-option>
+        <ion-select-option value="twoend">เลขท้ายสองตัว</ion-select-option>
+        <ion-select-option value="sixgroup">เลขหกตัว</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">เลขที่คุณซื้อ</ion-label>
+      <ion-input [(ngModel)]="numberbuy"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="putnumber()">แบ่งปัน</ion-button>
+</ion-content>

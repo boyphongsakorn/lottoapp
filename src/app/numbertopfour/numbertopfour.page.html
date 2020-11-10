@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>numbertopfour</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let item of alltopfour; let j = index">
+    {{ j === 0 ? 'เลขสามตัวหน้า 4อันดับที่ซื้อมากที่สุด' : j === 1 ? 'เลขสามตัวหลัง 4อันดับที่ซื้อมากที่สุด' : j === 2 ? 'เลขสองตัวหลัง 4อันดับที่ซื้อมากที่สุด' : 'เลขหกหลัก 4อันดับที่ซื้อมากที่สุด' }}
+    <ion-grid *ngIf="item.length">
+      <ion-row>
+        <ion-col *ngIf="item[0]">
+          {{item[0].lot_numberbuy}}
+        </ion-col>
+        <ion-col *ngIf="item[1]">
+          {{item[1].lot_numberbuy}}
+        </ion-col>
+        <ion-col *ngIf="item[2]">
+          {{item[2].lot_numberbuy}}
+        </ion-col>
+        <ion-col *ngIf="item[3]">
+          {{item[3].lot_numberbuy}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

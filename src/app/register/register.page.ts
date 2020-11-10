@@ -18,6 +18,7 @@ export class RegisterPage implements OnInit {
 
   username:any
   password:any
+  repassword:any
   email:any
 
   constructor(private http: HttpClient,public alertController: AlertController,private router:Router) { }
@@ -37,7 +38,12 @@ export class RegisterPage implements OnInit {
       "password": this.password
     };
 
-    if(this.username==null || this.password==null){
+    if(this.password!=this.repassword){
+      this.Alert("รหัสผ่านไม่ตรงกัน")
+      return false;
+    }
+
+    if(this.username==null || this.password==null || this.repassword==null){
       this.Alert("ชื่อผู้ใช้ หรือ รหัสผ่านไม่ควรว่าง")
       return false;
     }
@@ -49,6 +55,7 @@ export class RegisterPage implements OnInit {
         let json_data:any = data;
         console.log(json_data.result);
         if(json_data.result==1){
+          this.router.navigate(['home']); 
           console.log("สมัครเสร็จแล้ว คูบา");
         }
       },error=>{

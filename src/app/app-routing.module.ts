@@ -19,6 +19,22 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'sharenumber',
+    loadChildren: () => import('./sharenumber/sharenumber.module').then( m => m.SharenumberPageModule)
+  },
+  {
+    path: 'numbertopfour',
+    loadChildren: () => import('./numbertopfour/numbertopfour.module').then( m => m.NumbertopfourPageModule)
+  },
+  {
+    path: 'history',
+    loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
+  },
+  {
+    path: 'findnumber',
+    loadChildren: () => import('./findnumber/findnumber.module').then( m => m.FindnumberPageModule)
+  },
 ];
 
 @NgModule({

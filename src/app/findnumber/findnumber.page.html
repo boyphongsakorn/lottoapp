@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ค้นหาจำนวนครั้งที่เคยออก</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">ค้นหาเลขที่ต้องการ</ion-label>
+    <ion-input [(ngModel)]="numberfind"></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="finder()">ค้นหา</ion-button>
+
+  วันที่ออกทั้งหมด
+  <ion-list>
+    <ion-item *ngFor="let item of finddateall">
+      <ion-label>{{item}}</ion-label>
+    </ion-item>
+    
+  </ion-list>
+</ion-content>

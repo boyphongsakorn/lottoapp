@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>history</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1">
+        #
+      </ion-col>
+      <ion-col>
+        วันที่ซื้อ
+      </ion-col>
+      <ion-col>
+        เลขที่ซื้อ
+      </ion-col>
+      <ion-col>
+        สรุป
+      </ion-col>
+    </ion-row>
+    <div *ngFor="let item of list; let j = index">
+      <ion-row>
+        <ion-col size="1">
+          {{j+1}}
+        </ion-col>
+        <ion-col>
+          {{item.datetime}}
+        </ion-col>
+        <ion-col>
+          {{item.lot_numberbuy}}
+        </ion-col>
+        <ion-col>
+          {{ item.lot_status === 'wait' ? 'ยังไม่ออก' : item.lot_status === 'win' ? 'ถูก' : 'ไม่ถูก' }}
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

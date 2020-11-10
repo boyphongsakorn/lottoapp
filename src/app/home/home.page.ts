@@ -7,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { AlertController } from '@ionic/angular';
 import {Router} from '@angular/router';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ export class HomePage {
   username:any
   password:any
 
-  constructor(private http: HttpClient,public alertController: AlertController,private router:Router) {}
+  constructor(private http: HttpClient,public alertController: AlertController,private router:Router,private storage:Storage) {}
 
   logincheck(){
 
@@ -39,11 +40,13 @@ export class HomePage {
         let json_data:any = data;
         console.log(json_data.result);
         if(json_data.result==1){
-          console.log("หี");
-          this.presentAlert()
+          //this.storage.set('storage_session',logindata);
+          //console.log("หี");
+          this.storage.set('username', this.username);
+          this.presentAlert(this.username)
         }
       },error=>{
-        alert("error");
+        alert("ไม่ได้ใส่ชื่อผู้ใช้ หรือ รหัสผ่าน");
       }
     );
 
@@ -53,11 +56,11 @@ export class HomePage {
     this.router.navigate(['checklotto']);
   }*/
 
-  async presentAlert() {
+  async presentAlert(wow) {
     const alert = await this.alertController.create({
       //cssClass: 'my-custom-class',
       header: 'ยินดีต้อนรับ',
-      message: 'คุณ BoyPhongsakorn',
+      message: 'คุณ '+wow,
       buttons: [
         {
           text: 'ตกลง',

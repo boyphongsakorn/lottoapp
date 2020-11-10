@@ -5,40 +5,95 @@
 </ion-header>
 
 <ion-content>
-  <h5>สลากกินแบ่งรัฐบาลเมื่อวันที่ 16 ตุลาคม 2563</h5>
+  <h5>สลากกินแบ่งรัฐบาลเมื่อวันที่ {{lastlotttext}}</h5>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="{{pageone}}">
+        <ion-button color="tertiary" size="small" expand="block" (click)="bgtp(1)">แบ่งปันเลขที่ซื้อ</ion-button>
+      </ion-col>
+      <ion-col size="{{pagetwo}}">
+        <ion-button color="tertiary" size="small" expand="block" (click)="bgtp(2)">เลขที่ซื้อมากที่สุด 4 อันดับ</ion-button>
+      </ion-col>
+      <ion-col size="{{pagefour}}">
+        <ion-button color="secondary" size="small" expand="block" (click)="bgtp(4)">ค้นหาจำนวนครั้งที่เคยออก</ion-button>
+      </ion-col>
+      <ion-col size="{{pagethree}}">
+        <ion-button color="secondary" size="small" expand="block" (click)="bgtp(3)">ประวัติการซื้อ</ion-button>
+      </ion-col>
+    </ion-row>  
+  </ion-grid>
+  <div *ngIf="first">
+    <ion-list>
+      <ion-item>
+        <ion-label>รางวัลที่หนึ่ง</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{first}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>รางวัลใกล้เคียง</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{nearfirststart}}</ion-label>
+        <ion-label>{{nearfirstend}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>รางวัลเลขหน้าสามตัว</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{threestartone}}</ion-label>
+        <ion-label>{{threestarttwo}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>รางวัลเลขท้ายสามตัว</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{threeendone}}</ion-label>
+        <ion-label>{{threeendtwo}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>รางวัลเลขท้ายสองตัว</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{twoend}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="!first">
   <ion-list>
     <ion-item>
       <ion-label>รางวัลที่หนึ่ง</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>{{first}}</ion-label>
+      <ion-label><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-label>
     </ion-item>
     <ion-item>
       <ion-label>รางวัลใกล้เคียง</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>{{nearfirststart}}</ion-label>
-      <ion-label>{{nearfirstend}}</ion-label>
+      <ion-label><ion-skeleton-text animated style="width: 45%"></ion-skeleton-text></ion-label>
+      <ion-label><ion-skeleton-text animated style="width: 45%"></ion-skeleton-text></ion-label>
     </ion-item>
     <ion-item>
       <ion-label>รางวัลเลขหน้าสามตัว</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>{{threestartone}}</ion-label>
-      <ion-label>{{threestarttwo}}</ion-label>
+      <ion-label><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-label>
+      <ion-label><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-label>
     </ion-item>
     <ion-item>
       <ion-label>รางวัลเลขท้ายสามตัว</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>{{threeendone}}</ion-label>
-      <ion-label>{{threeendtwo}}</ion-label>
+      <ion-label><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-label>
+      <ion-label><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-label>
     </ion-item>
     <ion-item>
       <ion-label>รางวัลเลขท้ายสองตัว</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>{{twoend}}</ion-label>
+      <ion-label><ion-skeleton-text animated style="width: 15%"></ion-skeleton-text></ion-label>
     </ion-item>
   </ion-list>
+  </div>
 </ion-content>
